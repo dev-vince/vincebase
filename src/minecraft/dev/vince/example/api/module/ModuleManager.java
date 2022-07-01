@@ -1,11 +1,10 @@
 package dev.vince.example.api.module;
 
 import dev.vince.example.impl.module.misc.TestModule;
+import dev.vince.example.impl.module.render.HUD;
+import net.minecraft.client.Minecraft;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ModuleManager {
@@ -17,12 +16,17 @@ public class ModuleManager {
 
     private void addModules() {
         this.modules.put(TestModule.class, new TestModule());
+        this.modules.put(HUD.class, new HUD());
     }
 
     public List<Module> getModules() {
         return new ArrayList<>(this.modules.values());
     }
 
+
+    public List<Module> getSortedModules() {
+        return this.getModules().stream().sorted(Comparator.comparing(module -> Minecraft.getMinecraft().fontRendererObj.getStringWidth(((Module) module).getName())).reversed()).collect(Collectors.toList());
+    }
     public <T extends Module> T getModule(Class<T> clas) {
         return (T) getModules().stream().filter(module -> module.getClass() == clas).findFirst().orElse(null);
     }

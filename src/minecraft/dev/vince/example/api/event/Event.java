@@ -1,7 +1,8 @@
 package dev.vince.example.api.event;
 
-public abstract class Event {
-    private boolean canceled;
+import best.azura.eventbus.events.CancellableEvent;
+
+public abstract class Event extends CancellableEvent {
     private EventType type;
 
     public void setType(EventType type) {
@@ -10,17 +11,5 @@ public abstract class Event {
 
     public EventType getType() {
         return type;
-    }
-
-    public boolean isCanceled() {
-        return canceled;
-    }
-
-    public void setCanceled() {
-        this.canceled = true;
-    }
-
-    public void setCanceled(boolean value) {
-        this.canceled = value;
     }
 }

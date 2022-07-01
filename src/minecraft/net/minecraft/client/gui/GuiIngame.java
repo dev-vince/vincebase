@@ -6,6 +6,9 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
+
+import dev.vince.example.Client;
+import dev.vince.example.impl.event.OverlayEvent;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -349,6 +352,9 @@ public class GuiIngame extends Gui
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableLighting();
         GlStateManager.enableAlpha();
+
+        OverlayEvent e = new OverlayEvent(scaledresolution);
+        Client.INSTANCE.getEventBus().call(e);
     }
 
     protected void renderTooltip(ScaledResolution sr, float partialTicks)

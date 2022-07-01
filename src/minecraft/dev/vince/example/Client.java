@@ -1,6 +1,5 @@
 package dev.vince.example;
 
-import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import dev.vince.example.api.client.BuildType;
 import dev.vince.example.api.module.Module;
@@ -8,6 +7,10 @@ import dev.vince.example.api.module.ModuleManager;
 import dev.vince.example.api.utils.LoggingUtil;
 import dev.vince.example.impl.event.KeyEvent;
 import lombok.extern.java.Log;
+import best.azura.eventbus.core.EventBus;
+import best.azura.eventbus.core.EventPriority;
+import best.azura.eventbus.handler.EventHandler;
+import best.azura.eventbus.handler.Listener;
 import org.lwjgl.opengl.Display;
 
 public enum Client {
@@ -20,11 +23,17 @@ public enum Client {
     private BuildType buildType;
 
     public final Runnable start = () -> {
-        this.initiate.run(); // Initiate the client
+        System.out.println("Client initiated!");
+        this.name = "BinceBase";
+        this.version = "1.0";
+        this.author = "Vince";
+        this.buildType = BuildType.DEVELOPER;
+
+        Display.setTitle(this.name + " v" + this.version + " by " + this.author);
 
         //Initiate the client x2
         this.loggingUtil = new LoggingUtil(); // Initialize the logging utility
-        this.eventBus = new EventBus(this.name); //Event bus for the client using the client name as the identifier
+        this.eventBus = new EventBus(); // Initialize the event bus
         this.moduleManager = new ModuleManager(); // Initialize the module manager
 
         //Post initialization
@@ -32,45 +41,36 @@ public enum Client {
         this.eventBus.register(this); // Register the client to the event bus
     };
 
-    private final Runnable initiate = () -> {
-        System.out.println("Client initiated!");
-        this.name = "BinceBase";
-        this.version = "1.0";
-        this.author = "Vince";
-        this.buildType = BuildType.DEVELOPER;
-        Display.setTitle(this.name + " v" + this.version + " by " + this.author);
+    @EventHandler()
+    public final Listener<KeyEvent> testEventListener = e -> {
+        getModuleManager().getModules().stream().filter(m -> m.getKeybind() == e.getKey()).forEach(Module::enable);
     };
 
-    @Subscribe
-    public void onKey(KeyEvent e) {
-        INSTANCE.getModuleManager().getModules().stream().filter(m -> m.getKeybind() == e.getKey()).forEach(Module::enable);
-    }
-
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public String getVersion() {
+    public final String getVersion() {
         return version;
     }
 
-    public String getAuthor() {
+    public final String getAuthor() {
         return author;
     }
 
-    public EventBus getEventBus() {
+    public final EventBus getEventBus() {
         return eventBus;
     }
 
-    public ModuleManager getModuleManager() {
+    public final ModuleManager getModuleManager() {
         return moduleManager;
     }
 
-    public LoggingUtil getLoggingUtil() {
+    public final LoggingUtil getLoggingUtil() {
         return loggingUtil;
     }
 
-    public BuildType getBuildType() {
+    public final BuildType getBuildType() {
         return buildType;
     }
 }

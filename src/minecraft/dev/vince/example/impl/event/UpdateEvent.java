@@ -1,5 +1,6 @@
 package dev.vince.example.impl.event;
 
+import best.azura.eventbus.events.CancellableEvent;
 import dev.vince.example.api.event.Event;
 
 public class UpdateEvent extends Event {

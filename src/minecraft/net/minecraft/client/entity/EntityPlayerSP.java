@@ -216,9 +216,9 @@ public class EntityPlayerSP extends AbstractClientPlayer {
         if (this.isCurrentViewEntity()) {
             UpdateEvent e = new UpdateEvent(this.posX, this.getEntityBoundingBox().minY, this.posZ, this.rotationYaw, this.rotationPitch, this.onGround);
             e.setType(EventType.PRE);
-            Client.INSTANCE.getEventBus().post(e);
+            Client.INSTANCE.getEventBus().call(e);
 
-            if (!e.isCanceled()) {
+            if (!e.isCancelled()) {
                 double d0 = this.posX - this.lastReportedPosX;
                 double d1 = this.getEntityBoundingBox().minY - this.lastReportedPosY;
                 double d2 = this.posZ - this.lastReportedPosZ;
@@ -258,7 +258,7 @@ public class EntityPlayerSP extends AbstractClientPlayer {
             }
 
             e.setType(EventType.PRE);
-            Client.INSTANCE.getEventBus().post(e);
+            Client.INSTANCE.getEventBus().call(e);
         }
     }
 

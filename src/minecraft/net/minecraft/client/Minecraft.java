@@ -38,7 +38,6 @@ import java.util.concurrent.FutureTask;
 import javax.imageio.ImageIO;
 
 import dev.vince.example.Client;
-import dev.vince.example.Launcher;
 import dev.vince.example.impl.event.KeyEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -581,7 +580,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
             this.displayGuiScreen(new GuiMainMenu());
         }
 
-        Launcher.start(); //Client hook
+        Client.INSTANCE.start.run();
 
         this.renderEngine.deleteTexture(this.mojangLogo);
         this.mojangLogo = null;
@@ -1668,7 +1667,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage {
                         this.currentScreen.handleKeyboardInput();
                     } else {
                         KeyEvent e = new KeyEvent(k);
-                        Client.INSTANCE.getEventBus().post(e);
+                        Client.INSTANCE.getEventBus().call(e);
 
                         if (k == 1) {
                             this.displayInGameMenu();

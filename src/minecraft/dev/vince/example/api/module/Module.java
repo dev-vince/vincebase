@@ -32,7 +32,7 @@ public class Module {
         return enabled;
     }
 
-    private boolean isEnabled() {
+    public boolean isEnabled() {
         return enabled;
     }
 

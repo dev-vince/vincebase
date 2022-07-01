@@ -1,5 +1,6 @@
 package dev.vince.example.impl.event;
 
+
 import dev.vince.example.api.event.Event;
 
 public class KeyEvent extends Event {
