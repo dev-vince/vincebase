@@ -5,11 +5,12 @@ import dev.vince.example.api.utils.LoggingUtil;
 import net.minecraft.client.Minecraft;
 
 public class Module {
-    public Minecraft mc = Minecraft.getMinecraft();
-    private String name, description;
-    private boolean enabled;
-    private ModuleCategory category;
+    public final Minecraft mc = Minecraft.getMinecraft();
+    private final String name;
+    private final String description;
+    private final ModuleCategory category;
     private int keybind;
+    private boolean enabled;
 
     public Module(String name, String description, ModuleCategory category, int defaultKey) {
         this.name = name;
@@ -19,24 +20,24 @@ public class Module {
         this.keybind = defaultKey;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public String getDescription() {
+    public final String getDescription() {
         return description;
     }
 
-    public boolean enable() {
+    public final boolean enable() {
         setEnabled(!enabled);
         return enabled;
     }
 
-    public boolean isEnabled() {
+    public final boolean isEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public final void setEnabled(boolean enabled) {
         this.enabled = enabled;
         if (this.enabled) {
             this.onEnable();
@@ -45,24 +46,24 @@ public class Module {
         }
     }
 
-    public ModuleCategory getCategory() {
+    public final ModuleCategory getCategory() {
         return category;
     }
 
-    public int getKeybind() {
+    public final int getKeybind() {
         return keybind;
     }
 
-    public void setKeybind(int keybind) {
+    public final void setKeybind(int keybind) {
         this.keybind = keybind;
     }
 
-    public void onEnable() {
+    public final void onEnable() {
         Client.INSTANCE.getEventBus().register(this);
         Client.INSTANCE.getLoggingUtil().log("Enabled module: " + name);
     }
 
-    public void onDisable() {
+    public final void onDisable() {
         Client.INSTANCE.getEventBus().unregister(this);
         Client.INSTANCE.getLoggingUtil().log("Disabled module: " + name);
     }

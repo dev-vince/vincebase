@@ -9,7 +9,7 @@ public abstract class Event extends CancellableEvent {
         this.type = type;
     }
 
-    public EventType getType() {
+    public final EventType getType() {
         return type;
     }
 }

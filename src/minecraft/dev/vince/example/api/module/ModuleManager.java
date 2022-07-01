@@ -8,34 +8,34 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class ModuleManager {
-    private HashMap<Class<? extends Module>, Module> modules = new HashMap<Class<? extends Module>, Module>();
+    private final HashMap<Class<? extends Module>, Module> modules = new HashMap<Class<? extends Module>, Module>();
 
     public ModuleManager() {
         this.addModules();
     }
 
-    private void addModules() {
+    private final void addModules() {
         this.modules.put(TestModule.class, new TestModule());
         this.modules.put(HUD.class, new HUD());
     }
 
-    public List<Module> getModules() {
+    public final List<Module> getModules() {
         return new ArrayList<>(this.modules.values());
     }
 
 
-    public List<Module> getSortedModules() {
+    public final List<Module> getSortedModules() {
         return this.getModules().stream().sorted(Comparator.comparing(module -> Minecraft.getMinecraft().fontRendererObj.getStringWidth(((Module) module).getName())).reversed()).collect(Collectors.toList());
     }
-    public <T extends Module> T getModule(Class<T> clas) {
+    public final <T extends Module> T getModule(Class<T> clas) {
         return (T) getModules().stream().filter(module -> module.getClass() == clas).findFirst().orElse(null);
     }
 
-    public Module getModuleByName(String name) {
+    public final Module getModuleByName(String name) {
         return this.getModules().stream().filter(module -> module.getName().equals(name)).findFirst().orElse(null);
     }
 
-    public List<Module> getModulesByCategory(ModuleCategory category) {
+    public final List<Module> getModulesByCategory(ModuleCategory category) {
         return this.getModules().stream().filter(module -> module.getCategory() == category).collect(Collectors.toList());
     }
 }

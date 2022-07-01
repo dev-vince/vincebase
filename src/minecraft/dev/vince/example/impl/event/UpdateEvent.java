@@ -4,9 +4,9 @@ import best.azura.eventbus.events.CancellableEvent;
 import dev.vince.example.api.event.Event;
 
 public class UpdateEvent extends Event {
-    public double posX, posY, posZ;
-    public boolean onGround;
-    public float rotationYaw, rotationPitch;
+    private double posX, posY, posZ;
+    private boolean onGround;
+    private float rotationYaw, rotationPitch;
 
     public UpdateEvent(double posX, double posY, double posZ, float rotationYaw, float rotationPitch, boolean onGround) {
         this.posX = posX;
@@ -17,51 +17,51 @@ public class UpdateEvent extends Event {
         this.onGround = onGround;
     }
 
-    public void setX(double newPos){
+    public final void setX(double newPos){
         this.posX = newPos;
     }
 
-    public void setY(double newPos){
+    public final void setY(double newPos){
         this.posY = newPos;
     }
 
-    public void setZ(double newPos){
+    public final void setZ(double newPos){
         this.posZ = newPos;
     }
 
-    public void setYaw(float newYaw){
+    public final void setYaw(float newYaw){
         this.rotationYaw = newYaw;
     }
 
-    public void setPitch(float newPitch){
+    public final void setPitch(float newPitch){
         this.rotationPitch = newPitch;
     }
 
-    public void setOnGround(boolean newGround){
+    public final void setOnGround(boolean newGround){
         this.onGround = newGround;
     }
 
-    public double getPosX(){
+    public final double getPosX(){
         return this.posX;
     }
 
-    public double getPosY(){
+    public final double getPosY(){
         return this.posY;
     }
 
-    public double getPosZ(){
+    public final double getPosZ(){
         return this.posZ;
     }
 
-    public float getRotationYaw(){
+    public final float getRotationYaw(){
         return this.rotationYaw;
     }
 
-    public float getRotationPitch(){
+    public final float getRotationPitch(){
         return this.rotationPitch;
     }
 
-    public boolean isOnGround(){
+    public final boolean isOnGround(){
         return this.onGround;
     }
 }
