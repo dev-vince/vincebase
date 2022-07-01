@@ -69,4 +69,8 @@ public enum Client {
     public LoggingUtil getLoggingUtil() {
         return loggingUtil;
     }
+
+    public BuildType getBuildType() {
+        return buildType;
+    }
 }
