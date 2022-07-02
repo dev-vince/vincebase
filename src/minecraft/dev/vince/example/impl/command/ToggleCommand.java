@@ -5,7 +5,7 @@ import dev.vince.example.api.command.Command;
 
 public class ToggleCommand extends Command {
     public ToggleCommand() {
-        super("Toggle", "Toggle a module");
+        super("Toggle", "Toggle a module", new String[]{"toggle", "t"});
     }
 
     @Override

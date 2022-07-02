@@ -30,9 +30,11 @@ public final class CommandManager {
             String command = message.split(" ")[0];
             String args = message.substring(command.length());
             for(Command cmd : commands.values()) {
-                if (Objects.equals(cmd.getName().toLowerCase(Locale.ROOT), command.toLowerCase(Locale.ROOT))) {
-                    cmd.run(args.split(" "), args);
-                    return;
+                for(String alias : cmd.getAliases()) {
+                    if (Objects.equals(alias.toLowerCase(Locale.ROOT), command.toLowerCase(Locale.ROOT))) {
+                        cmd.run(args.split(" "), args);
+                        return;
+                    }
                 }
             }
 
