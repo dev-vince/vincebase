@@ -6,6 +6,8 @@ import dev.vince.example.api.command.CommandManager;
 import dev.vince.example.api.module.Module;
 import dev.vince.example.api.module.ModuleManager;
 import dev.vince.example.api.utils.LoggingUtil;
+import dev.vince.example.api.utils.MoveUtil;
+import dev.vince.example.api.utils.PacketUtil;
 import dev.vince.example.impl.event.KeyEvent;
 import lombok.extern.java.Log;
 import best.azura.eventbus.core.EventBus;
@@ -21,6 +23,8 @@ public enum Client {
     private String name, version, author;
     private EventBus eventBus;
     private LoggingUtil loggingUtil;
+    private PacketUtil packetUtil;
+    private MoveUtil moveUtil;
     private ModuleManager moduleManager;
     private CommandManager commandManager;
     private BuildType buildType;
@@ -36,6 +40,8 @@ public enum Client {
 
         //Initiate the client x2
         this.loggingUtil = new LoggingUtil(); // Initialize the logging utility
+        this.moveUtil = new MoveUtil(); // Initialize the move utility
+        this.packetUtil = new PacketUtil(); // Initialize the packet utility
         this.eventBus = new EventBus(); // Initialize the event bus
         this.moduleManager = new ModuleManager(); // Initialize the module manager
         this.commandManager = new CommandManager("."); // Initialize the command manager along with setting the prefix
@@ -85,5 +91,13 @@ public enum Client {
 
     public final Minecraft getMc() {
         return mc;
+    }
+
+    public final MoveUtil getMoveUtil() {
+        return moveUtil;
+    }
+
+    public final PacketUtil getPacketUtil() {
+        return packetUtil;
     }
 }

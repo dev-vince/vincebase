@@ -3,6 +3,7 @@ package dev.vince.example.api.module;
 import dev.vince.example.Client;
 import dev.vince.example.api.utils.LoggingUtil;
 import net.minecraft.client.Minecraft;
+import org.lwjgl.input.Keyboard;
 
 public class Module {
     public final Minecraft mc = Minecraft.getMinecraft();
@@ -49,6 +50,10 @@ public class Module {
 
     public ModuleCategory getCategory() {
         return category;
+    }
+
+    public String getKeybindString(){
+        return Keyboard.getKeyName(keybind);
     }
 
     public int getKeybind() {

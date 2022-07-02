@@ -5,7 +5,7 @@ import best.azura.eventbus.handler.EventHandler;
 import best.azura.eventbus.handler.Listener;
 import dev.vince.example.Client;
 import dev.vince.example.api.module.Module;
-import dev.vince.example.impl.command.ToggleCommand;
+import dev.vince.example.impl.command.*;
 import dev.vince.example.impl.event.ChatEvent;
 
 import java.util.*;
@@ -24,14 +24,14 @@ public final class CommandManager {
     @EventHandler(EventPriority.HIGHEST)
     public final Listener<ChatEvent> onChat = e -> {
         //TODO: Improve this
-        if(e.getMessage().startsWith(prefix)) {
+        if (e.getMessage().startsWith(prefix)) {
             e.setCancelled(true);
             String message = e.getMessage().substring(1);
             String command = message.split(" ")[0];
-            String args = message.substring(command.length());
-            for(Command cmd : commands.values()) {
-                for(String alias : cmd.getAliases()) {
+            for (Command cmd : commands.values()) {
+                for (String alias : cmd.getAliases()) {
                     if (Objects.equals(alias.toLowerCase(Locale.ROOT), command.toLowerCase(Locale.ROOT))) {
+                        String args = message.substring(alias.length()).trim();
                         cmd.run(args.split(" "), args);
                         return;
                     }
@@ -45,9 +45,18 @@ public final class CommandManager {
 
     private void addCommands() {
         this.commands.put(ToggleCommand.class, new ToggleCommand());
+        this.commands.put(HelpCommand.class, new HelpCommand());
+        this.commands.put(VClipCommand.class, new VClipCommand());
+        this.commands.put(InformationCommand.class, new InformationCommand());
+        this.commands.put(BindCommand.class, new BindCommand());
+        this.commands.put(HideCommand.class, new HideCommand());
     }
 
     public List<Command> getCommands() {
         return new ArrayList<>(this.commands.values());
+    }
+
+    public String getPrefix() {
+        return prefix;
     }
 }

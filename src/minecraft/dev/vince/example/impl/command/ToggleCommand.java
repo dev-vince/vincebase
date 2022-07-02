@@ -10,6 +10,10 @@ public class ToggleCommand extends Command {
 
     @Override
     public void run(String[] args, String message) {
-        Client.INSTANCE.getLoggingUtil().addChatInformation("Toggling module " + args[0]);
+        try {
+            Client.INSTANCE.getModuleManager().getModuleByName(args[0]).setEnabled(!Client.INSTANCE.getModuleManager().getModuleByName(args[0]).isEnabled());
+        } catch (Exception e){
+            Client.INSTANCE.getLoggingUtil().addChatError("Unknown module: " + args[0]);
+        }
     }
 }

@@ -2,6 +2,7 @@ package dev.vince.example.api.module;
 
 import dev.vince.example.impl.module.misc.Benchmark;
 import dev.vince.example.impl.module.misc.TestModule;
+import dev.vince.example.impl.module.movement.Sprint;
 import dev.vince.example.impl.module.render.HUD;
 import net.minecraft.client.Minecraft;
 
@@ -19,6 +20,7 @@ public final class ModuleManager {
         this.modules.put(TestModule.class, new TestModule());
         this.modules.put(HUD.class, new HUD());
         this.modules.put(Benchmark.class, new Benchmark());
+        this.modules.put(Sprint.class, new Sprint());
     }
 
     public List<Module> getModules() {
