@@ -3,6 +3,7 @@ package dev.vince.example.impl.event;
 import dev.vince.example.api.event.Event;
 import net.minecraft.network.Packet;
 
+@SuppressWarnings("rawtypes")
 public final class PacketEvent extends Event {
     private Packet packet;
 

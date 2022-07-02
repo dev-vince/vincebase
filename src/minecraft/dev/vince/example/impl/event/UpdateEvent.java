@@ -1,6 +1,5 @@
 package dev.vince.example.impl.event;
 
-import best.azura.eventbus.events.CancellableEvent;
 import dev.vince.example.api.event.Event;
 
 public final class UpdateEvent extends Event {
@@ -17,51 +16,51 @@ public final class UpdateEvent extends Event {
         this.onGround = onGround;
     }
 
-    public final void setX(double newPos){
+    public void setX(double newPos){
         this.posX = newPos;
     }
 
-    public final void setY(double newPos){
+    public void setY(double newPos){
         this.posY = newPos;
     }
 
-    public final void setZ(double newPos){
+    public void setZ(double newPos){
         this.posZ = newPos;
     }
 
-    public final void setYaw(float newYaw){
+    public void setYaw(float newYaw){
         this.rotationYaw = newYaw;
     }
 
-    public final void setPitch(float newPitch){
+    public void setPitch(float newPitch){
         this.rotationPitch = newPitch;
     }
 
-    public final void setOnGround(boolean newGround){
+    public void setOnGround(boolean newGround){
         this.onGround = newGround;
     }
 
-    public final double getPosX(){
+    public double getPosX(){
         return this.posX;
     }
 
-    public final double getPosY(){
+    public double getPosY(){
         return this.posY;
     }
 
-    public final double getPosZ(){
+    public double getPosZ(){
         return this.posZ;
     }
 
-    public final float getRotationYaw(){
+    public float getRotationYaw(){
         return this.rotationYaw;
     }
 
-    public final float getRotationPitch(){
+    public float getRotationPitch(){
         return this.rotationPitch;
     }
 
-    public final boolean isOnGround(){
+    public boolean isOnGround(){
         return this.onGround;
     }
 }

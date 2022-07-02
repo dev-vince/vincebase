@@ -1,6 +1,5 @@
 package dev.vince.example;
 
-import com.google.common.eventbus.Subscribe;
 import dev.vince.example.api.client.BuildType;
 import dev.vince.example.api.command.CommandManager;
 import dev.vince.example.api.module.Module;
@@ -9,9 +8,7 @@ import dev.vince.example.api.utils.LoggingUtil;
 import dev.vince.example.api.utils.MoveUtil;
 import dev.vince.example.api.utils.PacketUtil;
 import dev.vince.example.impl.event.KeyEvent;
-import lombok.extern.java.Log;
 import best.azura.eventbus.core.EventBus;
-import best.azura.eventbus.core.EventPriority;
 import best.azura.eventbus.handler.EventHandler;
 import best.azura.eventbus.handler.Listener;
 import net.minecraft.client.Minecraft;
@@ -53,9 +50,7 @@ public enum Client {
     };
 
     @EventHandler()
-    public final Listener<KeyEvent> onKey = e -> {
-        getModuleManager().getModules().stream().filter(m -> m.getKeybind() == e.getKey()).forEach(Module::enable);
-    };
+    public final Listener<KeyEvent> onKey = e -> getModuleManager().getModules().stream().filter(m -> m.getKeybind() == e.getKey()).forEach(Module::enable);
 
     public final String getName() {
         return name;

@@ -2,7 +2,6 @@ package dev.vince.example.impl.command;
 
 import dev.vince.example.Client;
 import dev.vince.example.api.command.Command;
-import net.minecraft.network.play.client.C03PacketPlayer;
 
 public class VClipCommand extends Command {
     public VClipCommand() {

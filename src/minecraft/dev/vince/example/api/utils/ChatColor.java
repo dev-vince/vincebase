@@ -6,6 +6,7 @@ import org.apache.commons.lang3.Validate;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 public enum ChatColor
 {
     BLACK("BLACK", 0, '0', 0),
@@ -42,7 +43,7 @@ public enum ChatColor
     private final String toString;
 
     static {
-        STRIP_COLOR_PATTERN = Pattern.compile("(?i)" + '§' + "[0-9A-FK-OR]");
+        STRIP_COLOR_PATTERN = Pattern.compile("(?i)" + '§' + "[\\dA-FK-OR]");
         BY_ID = Maps.newHashMap();
         BY_CHAR = Maps.newHashMap();
         ChatColor[] values;
@@ -114,7 +115,7 @@ public enum ChatColor
     }
 
     public final String getLastColors(final String input) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         final int length = input.length();
         for (int index = length - 1; index > -1; --index) {
             final char section = input.charAt(index);
@@ -122,7 +123,7 @@ public enum ChatColor
                 final char c = input.charAt(index + 1);
                 final ChatColor color = getByChar(c);
                 if (color != null) {
-                    result = color.toString() + result;
+                    result.insert(0, color);
                     if (color.isColor()) {
                         break;
                     }
@@ -132,6 +133,6 @@ public enum ChatColor
                 }
             }
         }
-        return result;
+        return result.toString();
     }
 }

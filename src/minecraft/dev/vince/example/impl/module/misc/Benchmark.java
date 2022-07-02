@@ -4,8 +4,6 @@ import dev.vince.example.Client;
 import dev.vince.example.api.module.Module;
 import dev.vince.example.api.module.ModuleCategory;
 import dev.vince.example.impl.event.TestEvent;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.IChatComponent;
 import org.lwjgl.input.Keyboard;
 
 public final class Benchmark extends Module {

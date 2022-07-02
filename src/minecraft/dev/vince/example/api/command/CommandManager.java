@@ -4,16 +4,15 @@ import best.azura.eventbus.core.EventPriority;
 import best.azura.eventbus.handler.EventHandler;
 import best.azura.eventbus.handler.Listener;
 import dev.vince.example.Client;
-import dev.vince.example.api.module.Module;
 import dev.vince.example.impl.command.*;
 import dev.vince.example.impl.event.ChatEvent;
 
 import java.util.*;
 
 public final class CommandManager {
-    private String prefix;
+    private final String prefix;
 
-    private final HashMap<Class<? extends Command>, Command> commands = new HashMap<Class<? extends Command>, Command>();
+    private final HashMap<Class<? extends Command>, Command> commands = new HashMap<>();
 
     public CommandManager(String prefix) {
         this.prefix = prefix;
@@ -24,7 +23,7 @@ public final class CommandManager {
     @EventHandler(EventPriority.HIGHEST)
     public final Listener<ChatEvent> onChat = e -> {
         //TODO: Improve this
-        if (e.getMessage().startsWith(prefix)) {
+        if (e.getMessage().startsWith(getPrefix())) {
             e.setCancelled(true);
             String message = e.getMessage().substring(1);
             String command = message.split(" ")[0];
@@ -39,7 +38,7 @@ public final class CommandManager {
             }
 
             Client.INSTANCE.getLoggingUtil().addChatError("Unknown command: " + command);
-            Client.INSTANCE.getLoggingUtil().addChatError("Use \"" + prefix + "help\" for a list of commands.");
+            Client.INSTANCE.getLoggingUtil().addChatError("Use \"" + getPrefix() + "help\" for a list of commands.");
         }
     };
 

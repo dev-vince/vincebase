@@ -10,7 +10,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public final class ModuleManager {
-    private final HashMap<Class<? extends Module>, Module> modules = new HashMap<Class<? extends Module>, Module>();
+    private final HashMap<Class<? extends Module>, Module> modules = new HashMap<>();
 
     public ModuleManager() {
         this.addModules();
@@ -33,6 +33,7 @@ public final class ModuleManager {
     }
 
     public <T extends Module> T getModule(Class<T> clas) {
+        //noinspection unchecked
         return (T) getModules().stream().filter(module -> module.getClass() == clas).findFirst().orElse(null);
     }
 

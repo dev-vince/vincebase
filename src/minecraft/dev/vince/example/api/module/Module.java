@@ -1,7 +1,6 @@
 package dev.vince.example.api.module;
 
 import dev.vince.example.Client;
-import dev.vince.example.api.utils.LoggingUtil;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 
@@ -30,9 +29,8 @@ public class Module {
         return description;
     }
 
-    public boolean enable() {
+    public void enable() {
         setEnabled(!enabled);
-        return enabled;
     }
 
     public boolean isEnabled() {

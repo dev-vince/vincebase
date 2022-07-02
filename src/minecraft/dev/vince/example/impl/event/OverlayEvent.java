@@ -10,7 +10,7 @@ public final class OverlayEvent extends Event {
         this.sr = sr;
     }
 
-    public final ScaledResolution getSr() {
+    public ScaledResolution getSr() {
         return sr;
     }
 }
