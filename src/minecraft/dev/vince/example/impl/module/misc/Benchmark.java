@@ -16,7 +16,7 @@ public final class Benchmark extends Module {
     public void onEnable() {
         super.onEnable();
         final long current = System.nanoTime();
-        int iterations = 100000;
+        int iterations = 1000000;
         for (int i = 0; i < iterations; i++) {
             Client.INSTANCE.getEventBus().call(new TestEvent());
         }

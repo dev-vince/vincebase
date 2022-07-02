@@ -258,7 +258,7 @@ public class EntityPlayerSP extends AbstractClientPlayer {
                 }
             }
 
-            e.setType(EventType.PRE);
+            e.setType(EventType.POST);
             Client.INSTANCE.getEventBus().call(e);
         }
     }

@@ -100,6 +100,9 @@ public abstract class EntityLivingBase extends Entity
     public float renderYawOffset;
     public float prevRenderYawOffset;
 
+    /** Entity head rotation Pitch */
+    public float rotationPitchHead;
+
     /** Entity head rotation yaw */
     public float rotationYawHead;
 
@@ -205,6 +208,7 @@ public abstract class EntityLivingBase extends Entity
         this.field_70769_ao = (float)Math.random() * 12398.0F;
         this.rotationYaw = (float)(Math.random() * Math.PI * 2.0D);
         this.rotationYawHead = this.rotationYaw;
+        this.rotationPitchHead = this.rotationPitch;
         this.stepHeight = 0.6F;
     }
 

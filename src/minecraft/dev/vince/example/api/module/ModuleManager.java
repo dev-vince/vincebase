@@ -1,5 +1,6 @@
 package dev.vince.example.api.module;
 
+import dev.vince.example.impl.module.combat.KillAura;
 import dev.vince.example.impl.module.misc.Benchmark;
 import dev.vince.example.impl.module.misc.TestModule;
 import dev.vince.example.impl.module.movement.Sprint;
@@ -21,6 +22,7 @@ public final class ModuleManager {
         this.modules.put(HUD.class, new HUD());
         this.modules.put(Benchmark.class, new Benchmark());
         this.modules.put(Sprint.class, new Sprint());
+        this.modules.put(KillAura.class, new KillAura());
     }
 
     public List<Module> getModules() {

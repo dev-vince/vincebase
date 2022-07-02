@@ -4,9 +4,7 @@ import dev.vince.example.api.client.BuildType;
 import dev.vince.example.api.command.CommandManager;
 import dev.vince.example.api.module.Module;
 import dev.vince.example.api.module.ModuleManager;
-import dev.vince.example.api.utils.LoggingUtil;
-import dev.vince.example.api.utils.MoveUtil;
-import dev.vince.example.api.utils.PacketUtil;
+import dev.vince.example.api.utils.*;
 import dev.vince.example.impl.event.KeyEvent;
 import best.azura.eventbus.core.EventBus;
 import best.azura.eventbus.handler.EventHandler;
@@ -21,6 +19,8 @@ public enum Client {
     private EventBus eventBus;
     private LoggingUtil loggingUtil;
     private PacketUtil packetUtil;
+    private EntityUtil entityUtil;
+    private MathUtil mathUtil;
     private MoveUtil moveUtil;
     private ModuleManager moduleManager;
     private CommandManager commandManager;
@@ -38,7 +38,9 @@ public enum Client {
         //Initiate the client x2
         this.loggingUtil = new LoggingUtil(); // Initialize the logging utility
         this.moveUtil = new MoveUtil(); // Initialize the move utility
+        this.entityUtil = new EntityUtil(); // Initialize the entity utility
         this.packetUtil = new PacketUtil(); // Initialize the packet utility
+        this.mathUtil = new MathUtil(); // Initialize the math utility
         this.eventBus = new EventBus(); // Initialize the event bus
         this.moduleManager = new ModuleManager(); // Initialize the module manager
         this.commandManager = new CommandManager("."); // Initialize the command manager along with setting the prefix
@@ -94,5 +96,13 @@ public enum Client {
 
     public final PacketUtil getPacketUtil() {
         return packetUtil;
+    }
+
+    public final EntityUtil getEntityUtil() {
+        return entityUtil;
+    }
+
+    public final MathUtil getMathUtil() {
+        return mathUtil;
     }
 }
