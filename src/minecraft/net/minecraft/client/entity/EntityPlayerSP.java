@@ -2,6 +2,7 @@ package net.minecraft.client.entity;
 
 import dev.vince.example.Client;
 import dev.vince.example.api.event.EventType;
+import dev.vince.example.impl.event.ChatEvent;
 import dev.vince.example.impl.event.UpdateEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
@@ -281,6 +282,11 @@ public class EntityPlayerSP extends AbstractClientPlayer {
      * Sends a chat message from the player. Args: chatMessage
      */
     public void sendChatMessage(String message) {
+        ChatEvent e = new ChatEvent(message);
+        Client.INSTANCE.getEventBus().call(e);
+        if(e.isCancelled())
+            return;
+
         this.sendQueue.addToSendQueue(new C01PacketChatMessage(message));
     }
 

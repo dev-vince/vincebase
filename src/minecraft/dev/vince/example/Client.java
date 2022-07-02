@@ -2,6 +2,7 @@ package dev.vince.example;
 
 import com.google.common.eventbus.Subscribe;
 import dev.vince.example.api.client.BuildType;
+import dev.vince.example.api.command.CommandManager;
 import dev.vince.example.api.module.Module;
 import dev.vince.example.api.module.ModuleManager;
 import dev.vince.example.api.utils.LoggingUtil;
@@ -21,6 +22,7 @@ public enum Client {
     private EventBus eventBus;
     private LoggingUtil loggingUtil;
     private ModuleManager moduleManager;
+    private CommandManager commandManager;
     private BuildType buildType;
 
     public final Runnable start = () -> {
@@ -36,6 +38,7 @@ public enum Client {
         this.loggingUtil = new LoggingUtil(); // Initialize the logging utility
         this.eventBus = new EventBus(); // Initialize the event bus
         this.moduleManager = new ModuleManager(); // Initialize the module manager
+        this.commandManager = new CommandManager("."); // Initialize the command manager along with setting the prefix
 
         //Post initialization
         this.loggingUtil.log(name + " started on build " + this.version);
@@ -76,7 +79,11 @@ public enum Client {
         return buildType;
     }
 
-    public Minecraft getMc() {
+    public final CommandManager getCommandManager() {
+        return commandManager;
+    }
+
+    public final Minecraft getMc() {
         return mc;
     }
 }
