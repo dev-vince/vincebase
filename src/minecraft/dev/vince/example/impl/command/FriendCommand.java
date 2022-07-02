@@ -4,9 +4,6 @@ import dev.vince.example.Client;
 import dev.vince.example.api.command.Command;
 import dev.vince.example.api.friend.Friend;
 import dev.vince.example.api.utils.LoggingUtil;
-import dev.vince.example.impl.event.ChatEvent;
-
-import java.util.UUID;
 
 public class FriendCommand extends Command {
     public FriendCommand() {

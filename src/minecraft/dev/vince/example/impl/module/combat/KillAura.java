@@ -12,7 +12,6 @@ import dev.vince.example.api.utils.MathUtil;
 import dev.vince.example.api.utils.PacketUtil;
 import dev.vince.example.api.utils.Stopwatch;
 import dev.vince.example.impl.event.UpdateEvent;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.network.play.client.C02PacketUseEntity;
 import org.lwjgl.input.Keyboard;
@@ -25,7 +24,7 @@ public final class KillAura extends Module {
         super("KillAura", "Kills all players in your radius", ModuleCategory.COMBAT, Keyboard.KEY_R);
     }
 
-    double range = 4.2;
+    final double range = 4.2;
 
     @EventHandler(EventPriority.HIGHEST)
     public final Listener<UpdateEvent> updateListener = e -> {

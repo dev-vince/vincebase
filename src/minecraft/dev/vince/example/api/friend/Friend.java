@@ -1,7 +1,5 @@
 package dev.vince.example.api.friend;
 
-import dev.vince.example.Client;
-
 import java.util.UUID;
 
 public final class Friend {
