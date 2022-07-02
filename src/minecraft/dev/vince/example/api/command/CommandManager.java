@@ -11,7 +11,7 @@ import dev.vince.example.impl.event.ChatEvent;
 import java.util.*;
 
 public final class CommandManager {
-    private final String prefix;
+    private String prefix;
 
     private final HashMap<Class<? extends Command>, Command> commands = new HashMap<>();
 
@@ -51,6 +51,8 @@ public final class CommandManager {
         this.commands.put(BindCommand.class, new BindCommand());
         this.commands.put(HideCommand.class, new HideCommand());
         this.commands.put(ModuleCommand.class, new ModuleCommand());
+        this.commands.put(PrefixCommand.class, new PrefixCommand());
+        this.commands.put(FriendCommand.class, new FriendCommand());
     }
 
     public List<Command> getCommands() {
@@ -59,5 +61,9 @@ public final class CommandManager {
 
     public String getPrefix() {
         return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 }

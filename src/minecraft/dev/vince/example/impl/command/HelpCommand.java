@@ -11,9 +11,7 @@ public class HelpCommand extends Command {
 
     @Override
     public void run(String[] args, String message) {
-        for (Command c : Client.INSTANCE.getCommandManager().getCommands()) {
-            LoggingUtil.addChatInformation(c.getName() + " - " + c.getDescription());
-        }
+        Client.INSTANCE.getCommandManager().getCommands().forEach(c -> LoggingUtil.addChatInformation(c.getName() + " - " + c.getDescription()));
         LoggingUtil.addChatInformation("Use \"" + Client.INSTANCE.getCommandManager().getPrefix() + "info\" for more information about the client.");
     }
 }

@@ -2,6 +2,7 @@ package dev.vince.example;
 
 import dev.vince.example.api.client.BuildType;
 import dev.vince.example.api.command.CommandManager;
+import dev.vince.example.api.friend.FriendManager;
 import dev.vince.example.api.module.Module;
 import dev.vince.example.api.module.ModuleManager;
 import dev.vince.example.api.utils.*;
@@ -19,6 +20,7 @@ public enum Client {
     private EventBus eventBus;
     private ModuleManager moduleManager;
     private CommandManager commandManager;
+    private FriendManager friendManager;
     private BuildType buildType;
 
     public final Runnable start = () -> {
@@ -33,6 +35,7 @@ public enum Client {
         this.eventBus = new EventBus(); // Initialize the event bus
         this.moduleManager = new ModuleManager(); // Initialize the module manager
         this.commandManager = new CommandManager("."); // Initialize the command manager along with setting the prefix
+        this.friendManager = new FriendManager(); // Initialize the friend manager
 
         //Post initialization
         LoggingUtil.log(name + " started on build " + this.version);
@@ -69,6 +72,10 @@ public enum Client {
 
     public final CommandManager getCommandManager() {
         return commandManager;
+    }
+
+    public final FriendManager getFriendManager() {
+        return friendManager;
     }
 
     public final Minecraft getMc() {
