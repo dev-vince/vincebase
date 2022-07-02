@@ -20,24 +20,24 @@ public class Module {
         this.keybind = defaultKey;
     }
 
-    public final String getName() {
+    public String getName() {
         return name;
     }
 
-    public final String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public final boolean enable() {
+    public boolean enable() {
         setEnabled(!enabled);
         return enabled;
     }
 
-    public final boolean isEnabled() {
+    public boolean isEnabled() {
         return enabled;
     }
 
-    public final void setEnabled(boolean enabled) {
+    public void setEnabled(boolean enabled) {
         this.enabled = enabled;
         if (this.enabled) {
             this.onEnable();
@@ -46,24 +46,24 @@ public class Module {
         }
     }
 
-    public final ModuleCategory getCategory() {
+    public ModuleCategory getCategory() {
         return category;
     }
 
-    public final int getKeybind() {
+    public int getKeybind() {
         return keybind;
     }
 
-    public final void setKeybind(int keybind) {
+    public void setKeybind(int keybind) {
         this.keybind = keybind;
     }
 
-    public final void onEnable() {
+    public void onEnable() {
         Client.INSTANCE.getEventBus().register(this);
         Client.INSTANCE.getLoggingUtil().log("Enabled module: " + name);
     }
 
-    public final void onDisable() {
+    public void onDisable() {
         Client.INSTANCE.getEventBus().unregister(this);
         Client.INSTANCE.getLoggingUtil().log("Disabled module: " + name);
     }

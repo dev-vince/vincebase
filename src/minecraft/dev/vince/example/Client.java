@@ -11,11 +11,12 @@ import best.azura.eventbus.core.EventBus;
 import best.azura.eventbus.core.EventPriority;
 import best.azura.eventbus.handler.EventHandler;
 import best.azura.eventbus.handler.Listener;
+import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.Display;
 
 public enum Client {
     INSTANCE;
-
+    private final Minecraft mc = Minecraft.getMinecraft();
     private String name, version, author;
     private EventBus eventBus;
     private LoggingUtil loggingUtil;
@@ -39,10 +40,11 @@ public enum Client {
         //Post initialization
         this.loggingUtil.log(name + " started on build " + this.version);
         this.eventBus.register(this); // Register the client to the event bus
+
     };
 
     @EventHandler()
-    public final Listener<KeyEvent> testEventListener = e -> {
+    public final Listener<KeyEvent> onKey = e -> {
         getModuleManager().getModules().stream().filter(m -> m.getKeybind() == e.getKey()).forEach(Module::enable);
     };
 
@@ -72,5 +74,9 @@ public enum Client {
 
     public final BuildType getBuildType() {
         return buildType;
+    }
+
+    public Minecraft getMc() {
+        return mc;
     }
 }
