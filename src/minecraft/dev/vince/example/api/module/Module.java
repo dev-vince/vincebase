@@ -60,11 +60,11 @@ public class Module {
 
     public void onEnable() {
         Client.INSTANCE.getEventBus().register(this);
-        Client.INSTANCE.getLoggingUtil().log("Enabled module: " + name);
+        Client.INSTANCE.getLoggingUtil().addChatSuccess("Enabled module: " + name);
     }
 
     public void onDisable() {
         Client.INSTANCE.getEventBus().unregister(this);
-        Client.INSTANCE.getLoggingUtil().log("Disabled module: " + name);
+        Client.INSTANCE.getLoggingUtil().addChatError("Disabled module: " + name);
     }
 }
