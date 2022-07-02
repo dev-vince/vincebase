@@ -7,7 +7,7 @@ import java.util.Locale;
 
 public class InformationCommand extends Command {
     public InformationCommand() {
-        super("information", "Displays information about the client");
+        super("information", "Displays information about the client",new String[]{"info","i","information"});
     }
 
     @Override

@@ -50,6 +50,7 @@ public final class CommandManager {
         this.commands.put(InformationCommand.class, new InformationCommand());
         this.commands.put(BindCommand.class, new BindCommand());
         this.commands.put(HideCommand.class, new HideCommand());
+        this.commands.put(ModuleCommand.class, new ModuleCommand());
     }
 
     public List<Command> getCommands() {
