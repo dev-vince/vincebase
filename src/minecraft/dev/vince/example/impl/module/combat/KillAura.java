@@ -3,11 +3,13 @@ package dev.vince.example.impl.module.combat;
 import best.azura.eventbus.core.EventPriority;
 import best.azura.eventbus.handler.EventHandler;
 import best.azura.eventbus.handler.Listener;
-import com.viaversion.viaversion.util.MathUtil;
 import dev.vince.example.Client;
 import dev.vince.example.api.event.EventType;
 import dev.vince.example.api.module.Module;
 import dev.vince.example.api.module.ModuleCategory;
+import dev.vince.example.api.utils.EntityUtil;
+import dev.vince.example.api.utils.MathUtil;
+import dev.vince.example.api.utils.PacketUtil;
 import dev.vince.example.api.utils.Stopwatch;
 import dev.vince.example.impl.event.UpdateEvent;
 import net.minecraft.entity.Entity;
@@ -27,7 +29,7 @@ public final class KillAura extends Module {
 
     @EventHandler(EventPriority.HIGHEST)
     public final Listener<UpdateEvent> updateListener = e -> {
-        target = Client.INSTANCE.getEntityUtil().getClosestEntity(range);
+        target = EntityUtil.getClosestEntity(range);
 
         if (target != null) {
             if (e.getType() == EventType.PRE) {
@@ -39,7 +41,7 @@ public final class KillAura extends Module {
     };
 
     private void rotate(UpdateEvent e,EntityLivingBase entity) {
-        final float[] rotations = Client.INSTANCE.getEntityUtil().getAnglesFromHitpoint(entity,"Head");
+        final float[] rotations = EntityUtil.getAnglesFromHitpoint(entity,"Head");
 
         final float yaw = rotations[0];
         final float pitch = rotations[1];
@@ -53,9 +55,9 @@ public final class KillAura extends Module {
 
     private void attack(EntityLivingBase e) {
         if (e != null) {
-            if (stopwatch.hasReached(1000 / Client.INSTANCE.getMathUtil().getRandInt(9, 14))) {
+            if (stopwatch.hasReached(1000 / MathUtil.getRandInt(9, 14))) {
                 mc.thePlayer.swingItem();
-                Client.INSTANCE.getPacketUtil().sendPacketNoEvent(new C02PacketUseEntity(e, C02PacketUseEntity.Action.ATTACK));
+                PacketUtil.sendPacketNoEvent(new C02PacketUseEntity(e, C02PacketUseEntity.Action.ATTACK));
                 stopwatch.reset();
             }
         }

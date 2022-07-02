@@ -1,6 +1,7 @@
 package dev.vince.example.api.module;
 
 import dev.vince.example.Client;
+import dev.vince.example.api.utils.LoggingUtil;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 
@@ -63,13 +64,17 @@ public class Module {
     }
 
     public void onEnable() {
-        Client.INSTANCE.getEventBus().register(this);
-        Client.INSTANCE.getLoggingUtil().addChatSuccess("Enabled module: " + name);
+        if(!Client.INSTANCE.getEventBus().isRegistered(this)) {
+            Client.INSTANCE.getEventBus().register(this);
+        }
+        LoggingUtil.addChatSuccess("Enabled module: " + name);
     }
 
     public void onDisable() {
-        Client.INSTANCE.getEventBus().unregister(this);
-        Client.INSTANCE.getLoggingUtil().addChatError("Disabled module: " + name);
+        if(Client.INSTANCE.getEventBus().isRegistered(this)) {
+            Client.INSTANCE.getEventBus().unregister(this);
+        }
+        LoggingUtil.addChatError("Disabled module: " + name);
     }
 
     public boolean isHidden() {

@@ -5,11 +5,11 @@ import net.minecraft.network.Packet;
 
 @SuppressWarnings("rawtypes")
 public final class PacketUtil {
-    public void sendPacket(Packet packet) {
+    public static void sendPacket(Packet packet) {
         Client.INSTANCE.getMc().getNetHandler().addToSendQueue(packet);
     }
 
-    public void sendPacketNoEvent(Packet packet) {
+    public static void sendPacketNoEvent(Packet packet) {
         Client.INSTANCE.getMc().getNetHandler().addToSendQueueSilent(packet);
     }
 }

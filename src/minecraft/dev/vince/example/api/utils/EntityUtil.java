@@ -9,8 +9,8 @@ import net.minecraft.util.MathHelper;
 
 import java.util.Locale;
 
-public class EntityUtil {
-    public EntityLivingBase getClosestEntity(double range) {
+public final class EntityUtil {
+    public static EntityLivingBase getClosestEntity(double range) {
         EntityLivingBase target = null;
         for (Entity entity : Minecraft.getMinecraft().theWorld.loadedEntityList) {
             if (canAttack(entity)) {
@@ -24,7 +24,7 @@ public class EntityUtil {
         return target;
     }
 
-    public boolean canAttack(Entity entity) {
+    public static boolean canAttack(Entity entity) {
         if ((!entity.isInvisible())) {
             return entity != Client.INSTANCE.getMc().thePlayer && entity.isEntityAlive() && Client.INSTANCE.getMc().thePlayer != null && Minecraft.getMinecraft().theWorld != null && Client.INSTANCE.getMc().thePlayer.ticksExisted > 30 && entity.ticksExisted > 15;
         } else {
@@ -83,7 +83,7 @@ public class EntityUtil {
         return Double.isNaN(Client.INSTANCE.getMc().thePlayer.rotationYaw - yawToEntity) ? 0.0f : MathHelper.wrapAngleTo180_float(-(Client.INSTANCE.getMc().thePlayer.rotationYaw - (float) yawToEntity));
     }
 
-    public float[] getAnglesFromHitpoint(Entity e, String hitpoint) {
+    public static float[] getAnglesFromHitpoint(Entity e, String hitpoint) {
         return new float[]{getYawChangeToEntity(e) + Client.INSTANCE.getMc().thePlayer.rotationYaw, getPitchChangeToEntityHitpoint(e, hitpoint) + Client.INSTANCE.getMc().thePlayer.rotationPitch};
     }
 }

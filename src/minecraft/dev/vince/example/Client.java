@@ -35,18 +35,12 @@ public enum Client {
 
         Display.setTitle(this.name + " v" + this.version + " by " + this.author);
 
-        //Initiate the client x2
-        this.loggingUtil = new LoggingUtil(); // Initialize the logging utility
-        this.moveUtil = new MoveUtil(); // Initialize the move utility
-        this.entityUtil = new EntityUtil(); // Initialize the entity utility
-        this.packetUtil = new PacketUtil(); // Initialize the packet utility
-        this.mathUtil = new MathUtil(); // Initialize the math utility
         this.eventBus = new EventBus(); // Initialize the event bus
         this.moduleManager = new ModuleManager(); // Initialize the module manager
         this.commandManager = new CommandManager("."); // Initialize the command manager along with setting the prefix
 
         //Post initialization
-        this.loggingUtil.log(name + " started on build " + this.version);
+        LoggingUtil.log(name + " started on build " + this.version);
         this.eventBus.register(this); // Register the client to the event bus
 
     };
@@ -74,10 +68,6 @@ public enum Client {
         return moduleManager;
     }
 
-    public final LoggingUtil getLoggingUtil() {
-        return loggingUtil;
-    }
-
     public final BuildType getBuildType() {
         return buildType;
     }
@@ -88,21 +78,5 @@ public enum Client {
 
     public final Minecraft getMc() {
         return mc;
-    }
-
-    public final MoveUtil getMoveUtil() {
-        return moveUtil;
-    }
-
-    public final PacketUtil getPacketUtil() {
-        return packetUtil;
-    }
-
-    public final EntityUtil getEntityUtil() {
-        return entityUtil;
-    }
-
-    public final MathUtil getMathUtil() {
-        return mathUtil;
     }
 }

@@ -3,6 +3,7 @@ package dev.vince.example.impl.module.misc;
 import dev.vince.example.Client;
 import dev.vince.example.api.module.Module;
 import dev.vince.example.api.module.ModuleCategory;
+import dev.vince.example.api.utils.LoggingUtil;
 import dev.vince.example.impl.event.TestEvent;
 import org.lwjgl.input.Keyboard;
 
@@ -20,7 +21,7 @@ public final class Benchmark extends Module {
         for (int i = 0; i < iterations; i++) {
             Client.INSTANCE.getEventBus().call(new TestEvent());
         }
-        Client.INSTANCE.getLoggingUtil().addChatInformation(iterations + " iterations took " + ((System.nanoTime() - current) / 1000000.0) + "ms");
+        LoggingUtil.addChatInformation(iterations + " iterations took " + ((System.nanoTime() - current) / 1000000.0) + "ms");
         this.setEnabled(false);
     }
 }

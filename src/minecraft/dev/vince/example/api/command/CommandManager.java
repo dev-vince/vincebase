@@ -4,6 +4,7 @@ import best.azura.eventbus.core.EventPriority;
 import best.azura.eventbus.handler.EventHandler;
 import best.azura.eventbus.handler.Listener;
 import dev.vince.example.Client;
+import dev.vince.example.api.utils.LoggingUtil;
 import dev.vince.example.impl.command.*;
 import dev.vince.example.impl.event.ChatEvent;
 
@@ -37,8 +38,8 @@ public final class CommandManager {
                 }
             }
 
-            Client.INSTANCE.getLoggingUtil().addChatError("Unknown command: " + command);
-            Client.INSTANCE.getLoggingUtil().addChatError("Use \"" + getPrefix() + "help\" for a list of commands.");
+            LoggingUtil.addChatError("Unknown command: " + command);
+            LoggingUtil.addChatError("Use \"" + getPrefix() + "help\" for a list of commands.");
         }
     };
 

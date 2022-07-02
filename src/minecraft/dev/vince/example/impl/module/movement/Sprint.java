@@ -6,6 +6,7 @@ import best.azura.eventbus.handler.Listener;
 import dev.vince.example.Client;
 import dev.vince.example.api.module.Module;
 import dev.vince.example.api.module.ModuleCategory;
+import dev.vince.example.api.utils.MoveUtil;
 import dev.vince.example.impl.event.UpdateEvent;
 
 public class Sprint extends Module {
@@ -15,7 +16,7 @@ public class Sprint extends Module {
 
     @EventHandler(EventPriority.LOWEST)
     public final Listener<UpdateEvent> onUpdate = e -> {
-        if (Client.INSTANCE.getMoveUtil().isMoving()) {
+        if (MoveUtil.isMoving()) {
             Client.INSTANCE.getMc().thePlayer.setSprinting(true);
         }
     };
