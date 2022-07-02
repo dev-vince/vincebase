@@ -8,10 +8,7 @@ import dev.vince.example.api.module.Module;
 import dev.vince.example.impl.command.ToggleCommand;
 import dev.vince.example.impl.event.ChatEvent;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public final class CommandManager {
     private String prefix;
@@ -20,7 +17,7 @@ public final class CommandManager {
 
     public CommandManager(String prefix) {
         this.prefix = prefix;
-        addCommands();
+        this.addCommands();
         Client.INSTANCE.getEventBus().register(this);
     }
 
@@ -31,13 +28,16 @@ public final class CommandManager {
             e.setCancelled(true);
             String message = e.getMessage().substring(1);
             String command = message.split(" ")[0];
-            String args = message.substring(command.length()).trim();
+            String args = message.substring(command.length());
             for(Command cmd : commands.values()) {
-                if (Objects.equals(cmd.getName(), command)) {
+                if (Objects.equals(cmd.getName().toLowerCase(Locale.ROOT), command.toLowerCase(Locale.ROOT))) {
                     cmd.run(args.split(" "), args);
-                    break;
+                    return;
                 }
             }
+
+            Client.INSTANCE.getLoggingUtil().addChatError("Unknown command: " + command);
+            Client.INSTANCE.getLoggingUtil().addChatError("Use \"" + prefix + "help\" for a list of commands.");
         }
     };
 
