@@ -16,13 +16,13 @@ public final class Benchmark extends Module {
 
     @Override
     public void onEnable() {
+        super.onEnable();
         final long current = System.nanoTime();
         int iterations = 100000;
         for (int i = 0; i < iterations; i++) {
             Client.INSTANCE.getEventBus().call(new TestEvent());
         }
-        Client.INSTANCE.getLoggingUtil().addChat(iterations + " iterations took " + ((System.nanoTime() - current) / 1000000.0) + "ms");
+        Client.INSTANCE.getLoggingUtil().addChatInformation(iterations + " iterations took " + ((System.nanoTime() - current) / 1000000.0) + "ms");
         this.setEnabled(false);
-        super.onEnable();
     }
 }

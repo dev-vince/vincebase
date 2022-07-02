@@ -10,22 +10,32 @@ public final class LoggingUtil {
     }
 
     public void addChat(String message) {
-        Client.INSTANCE.getMc().thePlayer.addChatMessage(new ChatComponentText(ChatColor.GRAY + "[" + ChatColor.GREEN + Client.INSTANCE.getName() + ChatColor.GRAY + "] " + message));
+        if(Client.INSTANCE.getMc().thePlayer != null) {
+            Client.INSTANCE.getMc().thePlayer.addChatMessage(new ChatComponentText(ChatColor.GRAY + "[" + ChatColor.GREEN + Client.INSTANCE.getName() + ChatColor.GRAY + "] " + message));
+        }
     }
 
     public void addChatSuccess(String message) {
-        Client.INSTANCE.getMc().thePlayer.addChatMessage(new ChatComponentText(ChatColor.GRAY + "[" + ChatColor.GREEN + Client.INSTANCE.getName() + ChatColor.GRAY + "] " + message));
+        if(Client.INSTANCE.getMc().thePlayer != null) {
+            Client.INSTANCE.getMc().thePlayer.addChatMessage(new ChatComponentText(ChatColor.GRAY + "[" + ChatColor.GREEN + Client.INSTANCE.getName() + ChatColor.GRAY + "] " + message));
+        }
     }
 
     public void addChatInformation(String message) {
-        Client.INSTANCE.getMc().thePlayer.addChatMessage(new ChatComponentText(ChatColor.GRAY + "[" + ChatColor.BLUE + Client.INSTANCE.getName() + ChatColor.GRAY + "] " + message));
+        if(Client.INSTANCE.getMc().thePlayer != null) {
+            Client.INSTANCE.getMc().thePlayer.addChatMessage(new ChatComponentText(ChatColor.GRAY + "[" + ChatColor.BLUE + Client.INSTANCE.getName() + ChatColor.GRAY + "] " + message));
+        }
     }
 
     public void addChatWarning(String message) {
-        Client.INSTANCE.getMc().thePlayer.addChatMessage(new ChatComponentText(ChatColor.GRAY + "[" + ChatColor.GOLD + Client.INSTANCE.getName() + ChatColor.GRAY + "] " + message));
+        if(Client.INSTANCE.getMc().thePlayer != null) {
+            Client.INSTANCE.getMc().thePlayer.addChatMessage(new ChatComponentText(ChatColor.GRAY + "[" + ChatColor.GOLD + Client.INSTANCE.getName() + ChatColor.GRAY + "] " + message));
+        }
     }
 
     public void addChatError(String message) {
-        Client.INSTANCE.getMc().thePlayer.addChatMessage(new ChatComponentText(ChatColor.GRAY + "[" + ChatColor.RED + Client.INSTANCE.getName() + ChatColor.GRAY + "] " + message));
+        if(Client.INSTANCE.getMc().thePlayer != null) {
+            Client.INSTANCE.getMc().thePlayer.addChatMessage(new ChatComponentText(ChatColor.GRAY + "[" + ChatColor.RED + Client.INSTANCE.getName() + ChatColor.GRAY + "] " + message));
+        }
     }
 }

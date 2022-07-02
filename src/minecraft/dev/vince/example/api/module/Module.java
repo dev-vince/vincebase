@@ -10,7 +10,7 @@ public class Module {
     private final String description;
     private final ModuleCategory category;
     private int keybind;
-    private boolean enabled;
+    private boolean enabled,hidden;
 
     public Module(String name, String description, ModuleCategory category, int defaultKey) {
         this.name = name;
@@ -18,6 +18,7 @@ public class Module {
         this.category = category;
         this.enabled = false;
         this.keybind = defaultKey;
+        this.hidden = false;
     }
 
     public String getName() {
@@ -66,5 +67,13 @@ public class Module {
     public void onDisable() {
         Client.INSTANCE.getEventBus().unregister(this);
         Client.INSTANCE.getLoggingUtil().addChatError("Disabled module: " + name);
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
     }
 }

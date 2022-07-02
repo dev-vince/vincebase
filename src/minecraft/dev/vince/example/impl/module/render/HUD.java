@@ -14,6 +14,7 @@ public final class HUD extends Module {
     public HUD() {
         super("HUD", "Displays the HUD", ModuleCategory.RENDER, Keyboard.KEY_L);
         this.setEnabled(true);
+        this.setHidden(false);
     }
 
     @EventHandler
@@ -23,7 +24,7 @@ public final class HUD extends Module {
         float xOffset = 3;
         AtomicReference<Float> yOffset = new AtomicReference<>(3F);
         Client.INSTANCE.getModuleManager().getSortedModules().forEach(module -> {
-            if (module.isEnabled()) {
+            if (module.isEnabled() && !module.isHidden()) {
                 mc.fontRendererObj.drawStringWithShadow(module.getName(), e.getSr().getScaledWidth() - mc.fontRendererObj.getStringWidth(module.getName()) - xOffset, yOffset.get(), -1);
                 yOffset.updateAndGet(v -> v + mc.fontRendererObj.FONT_HEIGHT + 1F);
             }
