@@ -17,11 +17,6 @@ public enum Client {
     private final Minecraft mc = Minecraft.getMinecraft();
     private String name, version, author;
     private EventBus eventBus;
-    private LoggingUtil loggingUtil;
-    private PacketUtil packetUtil;
-    private EntityUtil entityUtil;
-    private MathUtil mathUtil;
-    private MoveUtil moveUtil;
     private ModuleManager moduleManager;
     private CommandManager commandManager;
     private BuildType buildType;
