@@ -9,7 +9,7 @@ import dev.vince.example.api.module.ModuleCategory;
 import dev.vince.example.api.utils.MoveUtil;
 import dev.vince.example.impl.event.UpdateEvent;
 
-public class Sprint extends Module {
+public final class Sprint extends Module {
     public Sprint() {
         super("Sprint", "Automatically sprints!", ModuleCategory.MOVEMENT, 0);
     }

@@ -4,6 +4,7 @@ import best.azura.eventbus.core.EventPriority;
 import best.azura.eventbus.handler.EventHandler;
 import best.azura.eventbus.handler.Listener;
 import dev.vince.example.Client;
+import dev.vince.example.api.module.Module;
 import dev.vince.example.api.utils.LoggingUtil;
 import dev.vince.example.impl.command.*;
 import dev.vince.example.impl.event.ChatEvent;
@@ -38,6 +39,14 @@ public final class CommandManager {
                 }
             }
 
+            for (Module m : Client.INSTANCE.getModuleManager().getModules()) {
+                if (Objects.equals(m.getName().toLowerCase(Locale.ROOT), command.toLowerCase(Locale.ROOT))) {
+                    String args = message.substring(m.getName().length()).trim();
+                    m.getCommand().run(args.split(" "), args);
+                    return;
+                }
+            }
+
             LoggingUtil.addChatError("Unknown command: " + command);
             LoggingUtil.addChatError("Use \"" + getPrefix() + "help\" for a list of commands.");
         }
@@ -53,6 +62,7 @@ public final class CommandManager {
         this.commands.put(ModuleCommand.class, new ModuleCommand());
         this.commands.put(PrefixCommand.class, new PrefixCommand());
         this.commands.put(FriendCommand.class, new FriendCommand());
+        this.commands.put(TargetCommand.class, new TargetCommand());
     }
 
     public List<Command> getCommands() {

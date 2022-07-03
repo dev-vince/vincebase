@@ -2,7 +2,7 @@ package dev.vince.example.api.friend;
 
 import java.util.ArrayList;
 
-public class FriendManager {
+public final class FriendManager {
     private final ArrayList<Friend> friends = new ArrayList<>();
 
     public void addFriend(Friend friend) {

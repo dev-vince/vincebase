@@ -55,7 +55,7 @@ public final class KillAura extends Module {
     private void attack(EntityLivingBase e) {
         if (e != null) {
             if (stopwatch.hasReached(1000 / MathUtil.getRandInt(9, 14))) {
-                mc.thePlayer.swingItem();
+                Client.INSTANCE.getMc().thePlayer.swingItem();
                 PacketUtil.sendPacketNoEvent(new C02PacketUseEntity(e, C02PacketUseEntity.Action.ATTACK));
                 stopwatch.reset();
             }

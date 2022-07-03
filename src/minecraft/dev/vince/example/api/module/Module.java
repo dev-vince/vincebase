@@ -1,17 +1,22 @@
 package dev.vince.example.api.module;
 
 import dev.vince.example.Client;
+import dev.vince.example.api.settings.Setting;
 import dev.vince.example.api.utils.LoggingUtil;
-import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Module {
-    public final Minecraft mc = Minecraft.getMinecraft();
+    private final ArrayList<Setting> settings = new ArrayList<>();
     private final String name;
     private final String description;
     private final ModuleCategory category;
     private int keybind;
     private boolean enabled,hidden;
+    private final ModuleCommand command;
+
 
     public Module(String name, String description, ModuleCategory category, int defaultKey) {
         this.name = name;
@@ -20,6 +25,7 @@ public class Module {
         this.enabled = false;
         this.keybind = defaultKey;
         this.hidden = false;
+        this.command = new ModuleCommand(this, name, description);
     }
 
     public String getName() {
@@ -83,5 +89,17 @@ public class Module {
 
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
+    }
+
+    public void addSetting(Setting... setting) {
+        settings.addAll(Arrays.asList(setting));
+    }
+
+    public ArrayList<Setting> getSettings() {
+        return settings;
+    }
+
+    public ModuleCommand getCommand() {
+        return command;
     }
 }

@@ -12,7 +12,6 @@ public final class Benchmark extends Module {
         super("Benchmark", "A example module for the base", ModuleCategory.MISC, Keyboard.KEY_K);
     }
 
-
     @Override
     public void onEnable() {
         super.onEnable();

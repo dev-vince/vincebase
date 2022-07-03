@@ -14,4 +14,4 @@ public class HelpCommand extends Command {
         Client.INSTANCE.getCommandManager().getCommands().forEach(c -> LoggingUtil.addChatInformation(c.getName() + " - " + c.getDescription()));
         LoggingUtil.addChatInformation("Use \"" + Client.INSTANCE.getCommandManager().getPrefix() + "info\" for more information about the client.");
     }
-}   
+}
