@@ -30,7 +30,7 @@ public class Module {
         return description;
     }
 
-    public void enable() {
+    public void toggle() {
         setEnabled(!enabled);
     }
 

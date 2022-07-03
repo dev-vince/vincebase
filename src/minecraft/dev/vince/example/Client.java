@@ -44,7 +44,7 @@ public enum Client {
     };
 
     @EventHandler()
-    public final Listener<KeyEvent> onKey = e -> getModuleManager().getModules().stream().filter(m -> m.getKeybind() == e.getKey()).forEach(Module::enable);
+    public final Listener<KeyEvent> onKey = e -> getModuleManager().getModules().stream().filter(m -> m.getKeybind() == e.getKey()).forEach(Module::toggle);
 
     public final String getName() {
         return name;

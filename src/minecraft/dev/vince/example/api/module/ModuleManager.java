@@ -5,6 +5,7 @@ import dev.vince.example.impl.module.misc.Benchmark;
 import dev.vince.example.impl.module.misc.TestModule;
 import dev.vince.example.impl.module.movement.Sprint;
 import dev.vince.example.impl.module.render.HUD;
+import dev.vince.example.impl.module.render.TabGUI;
 import net.minecraft.client.Minecraft;
 
 import java.util.*;
@@ -23,6 +24,7 @@ public final class ModuleManager {
         this.modules.put(Benchmark.class, new Benchmark());
         this.modules.put(Sprint.class, new Sprint());
         this.modules.put(KillAura.class, new KillAura());
+        this.modules.put(TabGUI.class, new TabGUI());
     }
 
     public List<Module> getModules() {
