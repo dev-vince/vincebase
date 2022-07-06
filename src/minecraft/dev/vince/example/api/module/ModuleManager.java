@@ -12,7 +12,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public final class ModuleManager {
-    private final HashMap<Class<? extends Module>, Module> modules = new HashMap<>();
+    private final LinkedHashMap<Class<? extends Module>, Module> modules = new LinkedHashMap<>();
 
     public ModuleManager() {
         this.addModules();
